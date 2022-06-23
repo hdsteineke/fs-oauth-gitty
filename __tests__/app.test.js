@@ -3,6 +3,10 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
+
+jest.mock('../lib/utils/github');
+
+
 describe('backend-express-template routes', () => {
   beforeEach(() => {
     return setup(pool);
