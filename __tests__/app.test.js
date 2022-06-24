@@ -60,7 +60,12 @@ describe('backend-express-template routes', () => {
 
     const res = await agent.post('/api/v1/posts').send({ message: 'peter piper harvested some vegetables' });
     expect(res.body.message).toEqual('peter piper harvested some vegetables');
+  });
 
+
+  it('should return error for unauthenticated user', async () => {
+    const res = await request(app).post('/api/v1/posts').send({ message: 'peter piper harvested some vegetables' });
+    expect(res.status).toEqual(401);
   });
 
   afterAll(() => {
