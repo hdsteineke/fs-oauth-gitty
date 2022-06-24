@@ -37,7 +37,21 @@ describe('backend-express-template routes', () => {
   it('DELETE should logout a user', async () => {
     const res = await request(app).delete('/api/v1/github/sessions');
     expect(res.body.message).toEqual('Signed out successfully');
-    
+  });
+
+  it('unauthenticated users are not able to see posts', async () => {
+    const res = await request(app).get('/api/v1/posts');
+    expect(res.status).toEqual(401);
+  });
+
+
+  it('should return a list of posts', async () => {
+    const agent = request.agent(app);
+    await agent.get('/api/v1/github/callback?code=42');
+
+    const res = await agent.get('/api/v1/posts');
+
+    expect(res.body.length).toEqual(3);
   });
 
   afterAll(() => {

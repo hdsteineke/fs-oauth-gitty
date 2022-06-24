@@ -1,6 +1,7 @@
 -- Use this file to define your SQL tables
 -- The SQL in this file will be executed when you run `npm run setup-db`
 DROP TABLE IF EXISTS github_users;
+DROP TABLE IF EXISTS posts;
 
 CREATE TABLE github_users (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -8,3 +9,19 @@ CREATE TABLE github_users (
   email TEXT,
   avatar TEXT
 );
+
+CREATE TABLE posts (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  message TEXT,
+  created_at TIMESTAMP
+);
+
+INSERT INTO posts (
+  message,
+  created_at
+)
+
+VALUES 
+('she sells seashells', CURRENT_TIMESTAMP),
+('red letter yellow leather', CURRENT_TIMESTAMP),
+('unique new york', CURRENT_TIMESTAMP);
