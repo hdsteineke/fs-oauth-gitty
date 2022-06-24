@@ -13,15 +13,14 @@ CREATE TABLE github_users (
 CREATE TABLE posts (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   message TEXT,
-  created_at TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO posts (
-  message,
-  created_at
+  message
 )
 
 VALUES 
-('she sells seashells', CURRENT_TIMESTAMP),
-('red letter yellow leather', CURRENT_TIMESTAMP),
-('unique new york', CURRENT_TIMESTAMP);
+('she sells seashells'),
+('red letter yellow leather'),
+('unique new york');

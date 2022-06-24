@@ -54,6 +54,15 @@ describe('backend-express-template routes', () => {
     expect(res.body.length).toEqual(3);
   });
 
+  it('should allow user to create a new post', async () => {
+    const agent = request.agent(app);
+    await agent.get('/api/v1/github/callback?code=42');
+
+    const res = await agent.post('/api/v1/posts').send({ message: 'peter piper harvested some vegetables' });
+    expect(res.body.message).toEqual('peter piper harvested some vegetables');
+
+  });
+
   afterAll(() => {
     pool.end();
   });
