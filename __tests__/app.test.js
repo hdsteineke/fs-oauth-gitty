@@ -14,8 +14,7 @@ describe('backend-express-template routes', () => {
 
   it('should redirect user to github oauth for login', async () => {
     const res = await request(app).get('/api/v1/github/login');
-    console.log('res.header.location', res.header.location);
-    expect(res.header.location).toMatch(`https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&scope=user&redirect_uri=http://localhost:7890/api/v1/github/callback`);
+    expect(res.header.location).toMatch(`https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&scope=user&redirect_uri=${process.env.REDIRECT_URI}`);
   });
 
   it('should login and redirect users to /api/v1/github/dashboard', async () => {
